@@ -32,6 +32,7 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 25%;
 }
 
 button:hover {
@@ -45,4 +46,13 @@ button:hover {
 
 a {
     text-decoration: none;
+}
+
+#clearAPIKeysButton {
+    background-color: #ec3030;
+    color: #fff;
+}
+
+#clearAPIKeysButton:hover {
+    background-color: #cc0000;
 }

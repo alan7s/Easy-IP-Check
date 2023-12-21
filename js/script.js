@@ -77,3 +77,9 @@ async function checkIP() {
         vtContainer.innerHTML = '<p>An error occurred while processing the request. Try again later.</p>';
     }
 }
+
+function clearAPIKeys() {
+    localStorage.removeItem('virusTotalApiKey');
+    localStorage.removeItem('shodanApiKey');
+    alert('API keys have been removed. Please enter again when querying.');
+}
