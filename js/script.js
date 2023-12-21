@@ -2,8 +2,20 @@ async function checkIP() {
     const ipInput = document.getElementById('ipInput');
     const vtContainer = document.getElementById('vtContainer');
     const shodanContainer = document.getElementById('shodanContainer');
-    const virusTotalApiKey = 'YOUR-API-KEY';
-    const shodanApiKey = 'YOUR-API-KEY';
+
+    // Gerenciamento API VirusTotal
+    let virusTotalApiKey = localStorage.getItem('virusTotalApiKey');
+    if (!virusTotalApiKey) {
+        virusTotalApiKey = prompt('Please enter your VirusTotal API key:');
+        localStorage.setItem('virusTotalApiKey', virusTotalApiKey);
+    }
+
+    // Gerenciamento API Shodan
+    let shodanApiKey = localStorage.getItem('shodanApiKey');
+    if (!shodanApiKey) {
+        shodanApiKey = prompt('Please enter your Shodan API key:');
+        localStorage.setItem('shodanApiKey', shodanApiKey);
+    }
 
     // Confere entrada usuário
     const ipRegex = /^(?:(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[0-9a-fA-F]{1,4}:){1,7}:|(?:[0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|(?:[0-9a-fA-F]{1,4}:){1,5}(?::[0-9a-fA-F]{1,4})?|(?:[0-9a-fA-F]{1,4}:){1,4}(?::[0-9a-fA-F]{1,4}){0,1}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[0-9a-fA-F]{1,4}:){1,3}(?::[0-9a-fA-F]{1,4}){0,2}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[0-9a-fA-F]{1,4}:){1,2}(?::[0-9a-fA-F]{1,4}){0,3}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[0-9a-fA-F]{1,4}:){1,1}(?::[0-9a-fA-F]{1,4}){0,4}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|:(?::[0-9a-fA-F]{1,4}){0,6}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[0-9a-fA-F]{1,4}:){0,1}(?::[0-9a-fA-F]{1,4}){0,5}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|:(?::[0-9a-fA-F]{1,4}){1,7}|[0-9a-fA-F]{1,4}:((?::[0-9a-fA-F]{1,4}){0,5}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|:)|:(?::[0-9a-fA-F]{1,4}){0,6}:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?::[0-9a-fA-F]{1,4}){2,7})$/;
