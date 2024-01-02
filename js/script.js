@@ -25,10 +25,10 @@ async function checkIP() {
         return;
     }
 
-    try {
         vtContainer.innerHTML = '<p><strong>Requesting VirusTotal...</strong></p>';
         shodanContainer.innerHTML = '<p><strong>Requesting Shodan...</strong></p>';
 
+    try {
         // Consulta a API do VirusTotal
         const virusTotalResponse = await fetch(`https://www.virustotal.com/api/v3/ip_addresses/${ipInput.value}`, {
             headers: {
@@ -49,7 +49,10 @@ async function checkIP() {
             console.error('Error when requesting the VirusTotal API:', errorData.error.message);
             vtContainer.innerHTML = `<p><strong>VirusTotal scan:</strong>${errorData.error.message}</p>`;
         }
-
+    } catch (error) {
+        console.error('Error when requesting APIs:', error);
+        vtContainer.innerHTML = '<p>An error occurred while processing the VirusTotal request. Try again later.</p>';
+    } try {
         // Consulta a API do Shodan
         const shodanResponse = await fetch(`https://api.shodan.io/shodan/host/${ipInput.value}?key=${shodanApiKey}`);
 
@@ -74,7 +77,7 @@ async function checkIP() {
 
     } catch (error) {
         console.error('Error when requesting APIs:', error);
-        vtContainer.innerHTML = '<p>An error occurred while processing the request. Try again later.</p>';
+        shodanContainer.innerHTML = '<p>An error occurred while processing the Shodan request. Try again later.</p>';
     }
 }
 
